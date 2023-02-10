@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes..
+]);
  
 //Auth::routes();
 
@@ -27,4 +31,15 @@ Route::prefix('prospect')->group( function () {
     Route::get('/edit/{id}', [App\Http\Controllers\ProspectController::class, 'edit'])->name('prospect.edit');
 
     Route::post('/register', [App\Http\Controllers\ProspectController::class, 'store'])->name('prospect.register.store');
+});
+
+
+Route::prefix('product')->group( function () {
+
+    Route::get('/list', [App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
+
+
+    Route::get('/view/{id}', [App\Http\Controllers\ProductController::class, 'view'])->name('product.view');
+    
+
 });

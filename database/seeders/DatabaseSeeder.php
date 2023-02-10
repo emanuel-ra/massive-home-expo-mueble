@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Prospect::factory(30)->create();
 
+        $this->call([
+            ProductSeeder::class 
+            //ProspectsSeeder::class
+        ]);
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

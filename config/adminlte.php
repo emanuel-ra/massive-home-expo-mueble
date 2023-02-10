@@ -14,8 +14,8 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
-    'title_prefix' => '',
+    'title' => 'Massive Home',
+    'title_prefix' => 'MH',
     'title_postfix' => '',
 
     /*
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Massive</b>Home',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -253,11 +253,11 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
+    'register_url' => false, //'register',
+    'password_reset_url' => false , // 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
 
@@ -294,13 +294,16 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
+        [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true, // Or "topnav => true" to place on the left.
+        ],
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -318,7 +321,7 @@ return [
         ],
         [
             'text' => 'Productos',
-            'url'  => 'admin/blog',            
+            'route'  => 'product.list',            
             'icon' => 'fas fa-boxes',
         ],
         [
