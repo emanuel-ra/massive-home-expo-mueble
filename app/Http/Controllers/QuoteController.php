@@ -39,7 +39,7 @@ class QuoteController extends Controller
 
         //$data = Product::where('status_id',1)->orderByDesc('id')->paginate(15);       
         
-        return view('products.list',
+        return view('quote.list',
             ['data'=>$data,'keyword'=>$request->keyword]
         );
         

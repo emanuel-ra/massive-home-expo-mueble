@@ -50,18 +50,34 @@ class ProductSeeder extends Seeder
             $data_sheet_products_content = $key["data_sheet_products_content"];
             $data_sheet_products_specifications = $key["data_sheet_products_specifications"];
             
-            Product::create([
-                'id' => $id ,
-                'code' => $code ,
-                'name' => $name ,
-                'image' => $image ,
-                'price1' => number_format($price1,2,'.','') ,
-                'price2' => number_format($price2,2,'.','') ,
-                'price3' => number_format($price3,2,'.','') ,
-                'price4' => number_format($price4,2,'.','') ,
-            ]);      
-            
+            $item = Product::find($id);
 
+            if($item===null)
+            {
+                Product::create([
+                    'id' => $id ,
+                    'code' => $code ,
+                    'name' => $name ,
+                    'image' => $image ,
+                    'price1' => number_format($price1,2,'.','') ,
+                    'price2' => number_format($price2,2,'.','') ,
+                    'price3' => number_format($price3,2,'.','') ,
+                    'price4' => number_format($price4,2,'.','') ,
+                ]);     
+            }else{
+                $item->id = $id;
+                $item->code = $code;
+                $item->name = $name;
+                $item->image = $image;
+                $item->price1 = $price1;
+                $item->price2 = $price2;
+                $item->price3 = $price3;
+                $item->price4 = $price4;
+                $item->save();
+            }
+             
+            
+            ProductGallery::where('product_id',$id)->delete();           
             if(count($gallery_products)>0)
             {
                 foreach($gallery_products as $image)
@@ -74,6 +90,7 @@ class ProductSeeder extends Seeder
                 }
             }
 
+            ProductSheetDescription::where('product_id',$id)->delete();
             if($data_sheet_products_description!=null)
             {
                 ProductSheetDescription::create([
@@ -84,6 +101,7 @@ class ProductSeeder extends Seeder
                 ]);
             }
 
+            ProductSheetContent::where('product_id',$id)->delete();
             if(count($data_sheet_products_content)>0)
             {
                 foreach($data_sheet_products_content as $content)
@@ -97,6 +115,8 @@ class ProductSeeder extends Seeder
                 }
             }
 
+            ProductSheetSubSpecifications::where('product_id',$id)->delete();
+            ProductSheetSpecifications::where('product_id',$id)->delete();            
             if(count($data_sheet_products_specifications)>0)
             {
                 foreach($data_sheet_products_specifications as $specifications)

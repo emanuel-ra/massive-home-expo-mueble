@@ -47,4 +47,6 @@ Route::prefix('product')->group( function () {
 
 Route::prefix('quote')->group(function () {
     Route::match(['get', 'post'],'/list', [App\Http\Controllers\QuoteController::class, 'index'])->name('quote.list');
+
+    Route::get('/register', [App\Http\Controllers\ProspectController::class, 'register'])->name('quote.register');
 });
