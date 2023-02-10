@@ -28,7 +28,9 @@ class ProductSeeder extends Seeder
             'Categoria' => 'false',
             'Gallery' => 'false',
             'dsProducts' => 'true'
-        ])->json();
+        ])
+        //->withOptions(["verify"=>false])
+        ->json();
 
         foreach($products as $key)
         {

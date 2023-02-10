@@ -33,7 +33,7 @@
                 <div class="card-body px-0">
 
                     <div class="col-12 mb-2">
-                        <form action="{{ route('product.list') }}">
+                        <form action="{{ route('product.grid') }}">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" value="{{ $keyword }}" placeholder="Buscador.....">
                                 <span class="input-group-btn">
@@ -49,36 +49,36 @@
                         {{ $data->links('pagination::bootstrap-4') }}
                     </div>
 
-                    <div class="col-12 p-0">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>CODIGO</th>
-                                    <th>DESCRIPCION</th>
-                                    <th>MENUDEO</th>
-                                    <th>MAYOREO</th>
-                                    <th>DISTRIBUIDOR</th>
-                                    <th>CAJA</th>     
-                                    <th>IMAGEN</th>  
-                                    <th></th>                                                                 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data as $item)
-                                    <tr>
-                                        <td>{{ $item->code }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>$ {{ number_format($item->price1,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price2,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price3,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price4,2,'.',',') }}</td>
-                                        <td>
-                                            <div style="width: 100px;">
-                                                <img src="{{ asset("images/products/$item->image") }}" class="img-thumbnail img-fluid" alt="{{ $item->image }}">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown dropleft show">
+                    <div class="col-12">
+                        <div class="row">
+                            @foreach ($data as $item)
+                                <div class="col-6 col-lg-2">
+                                    <div class="card">
+                                        <img class="card-img-top" src="{{ asset("images/products/$item->image") }}" alt="{{ $item->image }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><b>{{ $item->code }}</b></h5>
+                                            <p class="card-text">{{ $item->name }}</p>                                            
+                                        </div>
+                                        <table class="table table-striped">
+                                            <tr>
+                                                <td>Menudeo</td>
+                                                <td>$ {{ number_format($item->price1,2,'.',',') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mayoreo</td>
+                                                <td>$ {{ number_format($item->price2,2,'.',',') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Distribuidor</td>
+                                                <td>$ {{ number_format($item->price3,2,'.',',') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Caja</td>
+                                                <td>$ {{ number_format($item->price4,2,'.',',') }}</td>
+                                            </tr>
+                                        </table>
+                                        <div class="col-12 p-2">
+                                            <div class="dropdown dropdown show">
                                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-cogs"></i>
                                                 </a>                                            
@@ -90,11 +90,11 @@
                                                     </li>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     
                     <div class="col-12">

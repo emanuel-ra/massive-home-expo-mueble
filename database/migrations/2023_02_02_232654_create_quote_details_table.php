@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('quote_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('quote_id');
+            $table->unsignedBigInteger('product_id');
+            $table->decimal('price',8,2);
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

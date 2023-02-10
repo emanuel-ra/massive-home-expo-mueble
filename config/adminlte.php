@@ -326,7 +326,7 @@ return [
         ],
         [
             'text' => 'Cotización',
-            'url'  => 'admin/blog',            
+            'route'  => 'quote.list',            
             'icon' => 'fas fa-store',
         ],
         /*

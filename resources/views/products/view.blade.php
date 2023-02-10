@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Prospectos</h1>
+    <h1 class="m-0 text-dark">Ficha Tecnica</h1>
 @stop
 
 @section('content')
@@ -31,12 +31,13 @@
                             <div class="col-12">
                                 <b>Código: </b> {{ $data->code }} <br>
                                 
-                                @if(isset($data->description))
-                                    <b>{{ ($data->description->title!='') ? $data->description->title:$data->name }}: </b><br>
-                                    {{ $data->description->description }} <br>
+                                @if($data->description!=null)
+                                    <b>{{ $data->description->title }}: </b><br>
+                                    {{ $data->description->description }} <br>                                    
                                 @endif
-
-                                
+                                @if($data->description==null)
+                                    <b>{{ $data->name }}: </b><br>
+                                @endif
                             </div>
                             <div class="col-12 col-lg-4">
                                 <img src="{{ asset("images/products/$data->image") }}" alt="image gallery" id="imageGallery" class="img-fluid">

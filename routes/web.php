@@ -26,8 +26,10 @@ Auth::routes([
 //Auth::routes();
 
 Route::prefix('prospect')->group( function () {
+
     Route::get('/list', [App\Http\Controllers\ProspectController::class, 'index'])->name('prospect.list');
     Route::get('/register', [App\Http\Controllers\ProspectController::class, 'register'])->name('prospect.register');
+
     Route::get('/edit/{id}', [App\Http\Controllers\ProspectController::class, 'edit'])->name('prospect.edit');
 
     Route::post('/register', [App\Http\Controllers\ProspectController::class, 'store'])->name('prospect.register.store');
@@ -36,10 +38,13 @@ Route::prefix('prospect')->group( function () {
 
 Route::prefix('product')->group( function () {
 
-    Route::get('/list', [App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
-
-
-    Route::get('/view/{id}', [App\Http\Controllers\ProductController::class, 'view'])->name('product.view');
+    Route::match(['get', 'post'],'/list', [App\Http\Controllers\ProductController::class, 'index'])->name('product.list');
+    Route::match(['get', 'post'],'/grid', [App\Http\Controllers\ProductController::class, 'grid'])->name('product.grid');
     
+    Route::get('/view/{id}', [App\Http\Controllers\ProductController::class, 'view'])->name('product.view');    
 
+});
+
+Route::prefix('quote')->group(function () {
+    Route::match(['get', 'post'],'/list', [App\Http\Controllers\QuoteController::class, 'index'])->name('quote.list');
 });
