@@ -32,7 +32,7 @@ class CartController extends Controller
                 'associatedModel' => $product
             ));
         }      
-        return back()->withInput();
+        return back()->withInput()->withSuccess('Articulo agregado a cesta');
     }
     public function minus($id){
         \Cart::update($id, array(
@@ -93,7 +93,7 @@ class CartController extends Controller
         
         $sub_total = $total;
         //$total = $total-$total_descuento;
-        
+        //return $cart;
         return view('cart.basket',
             [
                 'cart'=>$cart ,

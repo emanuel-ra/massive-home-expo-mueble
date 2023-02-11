@@ -47,11 +47,26 @@
                         <form action="{{route('prospect.register.store')}}" method="post">
                             @csrf
                             <div class="row">                               
-                                @foreach ($cart as $item)
-                                    <div class="card">
-                                        
-                                    </div>
-                                @endforeach
+                                <div class="col-12 col-lg-6">
+                                    @foreach ($cart as $item)
+                                        <div class="card col-12">  
+                                            <div class="row">
+                                                <div class="col-12 col-lg-2 p-2">
+                                                    <img src="{{ asset("images/products") }}/{{$item->associatedModel->image}}" alt="{{$item->associatedModel->image}}" style="width:100px;" onerror="this.src='{{ asset('images/image_not_found.png') }}';">
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <b>{{$item->associatedModel->code}}</b> <br>
+                                                    <span class="text-gray">{{$item->name}}</span>
+                                                </div>
+                                                <div class="col-12 col-lg-4">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                </div>
                             </div>
 
                             <div class="col-sm-12 px-0 d-flex justify-content-between">                    
@@ -82,6 +97,7 @@
                                 <h1>{{session('success')}} 😀👍</h1>
                             </div>                                
                         @endif
+
                     </div>
 
                 </div>

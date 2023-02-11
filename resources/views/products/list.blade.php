@@ -8,6 +8,13 @@
 
 @section('content')
     <div class="row">
+
+        @if(session('success'))
+            <div class="col-12 alert alert-success" id="success_alert" role="alert">
+                <h1>{{session('success')}}</h1>
+            </div>          
+        @endif
+        
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -74,7 +81,7 @@
                                         <td>$ {{ number_format($item->price4,2,'.',',') }}</td>
                                         <td>
                                             <div style="width: 100px;">
-                                                <img src="{{ asset("images/products/$item->image") }}" class="img-thumbnail img-fluid" alt="{{ $item->image }}">
+                                                <img src="{{ asset("images/products/$item->image") }}" onerror="this.src='{{ asset('images/image_not_found.png') }}';" class="img-thumbnail img-fluid" alt="{{ $item->image }}">
                                             </div>
                                         </td>
                                         <td>
@@ -110,4 +117,16 @@
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+    
+        @section('js')
+            <script>
+               setTimeout(() => {
+                    $("#success_alert").fadeOut('easing')
+               }, 1000);
+            </script>        
+        @endsection
+    @endif
+
 @stop

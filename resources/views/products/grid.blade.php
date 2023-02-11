@@ -54,7 +54,7 @@
                             @foreach ($data as $item)
                                 <div class="col-6 col-lg-2">
                                     <div class="card">
-                                        <img class="card-img-top" src="{{ asset("images/products/$item->image") }}" alt="{{ $item->image }}">
+                                        <img class="card-img-top" src="{{ asset("images/products/$item->image") }}" onerror="this.src='{{ asset('images/image_not_found.png') }}';" alt="{{ $item->image }}">
                                         <div class="card-body">
                                             <h5 class="card-title"><b>{{ $item->code }}</b></h5>
                                             <p class="card-text">{{ $item->name }}</p>                                            

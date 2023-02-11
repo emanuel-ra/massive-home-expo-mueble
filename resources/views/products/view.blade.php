@@ -40,20 +40,20 @@
                                 @endif
                             </div>
                             <div class="col-12 col-lg-4">
-                                <img src="{{ asset("images/products/$data->image") }}" alt="image gallery" id="imageGallery" class="img-fluid">
+                                <img src="{{ asset("images/products/$data->image") }}" onerror="this.src='{{ asset('images/image_not_found.png') }}';" alt="image gallery" id="imageGallery" class="img-fluid">
                             </div>
                             
                             <div class="col-12 col-lg-8">
                                 <div class="row">
                                     <div class="col-3">
                                         <a href="javascript:showImage('{{ asset("images/products/$data->image") }}')">
-                                            <img src="{{ asset("images/products/$data->image") }}" class="img-fluid gallery" alt="default" >
+                                            <img src="{{ asset("images/products/$data->image") }}" onerror="this.src='{{ asset('images/image_not_found.png') }}';" class="img-fluid gallery" alt="default" >
                                         </a>
                                     </div>
                                     @foreach ($data->gallery as $image)
                                         <div class="col-3">
                                             <a href="javascript:showImage('{{ asset("images/products/$image->image") }}')">
-                                                <img src="{{ asset("images/products/$image->image") }}" class="img-fluid img-thumbnail gallery" alt="{{ $image->image }}">
+                                                <img src="{{ asset("images/products/$image->image") }}" onerror="this.src='{{ asset('images/image_not_found.png') }}';" class="img-fluid img-thumbnail gallery" alt="{{ $image->image }}">
                                             </a>
                                         </div>
                                     @endforeach
