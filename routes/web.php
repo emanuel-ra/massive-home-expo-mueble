@@ -54,8 +54,18 @@ Route::prefix('quote')->group(function () {
 Route::prefix('cart')->group(function () {
     Route::get('/price/{type}', [App\Http\Controllers\CartController::class, 'set_price'])->name('cart.price');
 
+    Route::post('/prospect', [App\Http\Controllers\CartController::class, 'set_prospect'])->name('cart.prospect');
+    Route::get('/prospect/remove', [App\Http\Controllers\CartController::class, 'remove_prospect'])->name('cart.prospect.remove');
+
     Route::get('/get', [App\Http\Controllers\CartController::class, 'get'])->name('cart.get');    
 
     Route::get('/add/{product_id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+    Route::get('/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+
+    Route::get('/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 
 });
+
+Route::prefix('ajax')->group(function () {
+    Route::post('/prospect', [App\Http\Controllers\AjaxController::class, 'get_prospects'])->name('ajax.prospect');
+} );

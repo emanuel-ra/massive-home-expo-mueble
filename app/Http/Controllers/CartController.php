@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Prospect;
 
 class CartController extends Controller
 {
@@ -15,10 +16,7 @@ class CartController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }    
-    public function get_items(){
-        return 'hello world';
-    }
+    }       
     public function add($product_id){
         $product = Product::findOrFail((int)$product_id);
         
@@ -73,6 +71,8 @@ class CartController extends Controller
     public function get(){
 
         $type_price = session('type_price', 1);
+        $prospect_id = session('prospect_id', 0);
+
         $prices_labels = array();
 
         $prices_labels[1] = 'Precio Menudeo';
@@ -90,13 +90,16 @@ class CartController extends Controller
             if($type_price==3){ $total += $row->associatedModel->price3*$row->quantity; }
             if($type_price==4){ $total += $row->associatedModel->price4*$row->quantity; }
         }
-        
+
+        $prospect = Prospect::find($prospect_id);
+
         $sub_total = $total;
         //$total = $total-$total_descuento;
         //return $cart;
         return view('cart.basket',
             [
                 'cart'=>$cart ,
+                'prospect'=>$prospect ,
                 'sub_total'=>$sub_total ,
                 'total'=>$total ,
                 'type_price'=>$type_price ,
@@ -112,6 +115,18 @@ class CartController extends Controller
             return redirect()->back()->withErrors(['Error' => 'Parámetro incorrecto']);     
         }
         session(['type_price' => (int) $type]);
+        return back()->withInput();
+    }
+    public function set_prospect(Request $request)
+    {
+        if(!(int)$request->id){
+            return redirect()->back()->withErrors(['Error' => 'Parámetro incorrecto']);     
+        }
+        session(['prospect_id' => (int) $request->id]);
+        return back()->withInput();
+    }
+    public function remove_prospect(){
+        session(['prospect_id' => 0 ]);
         return back()->withInput();
     }
 }
