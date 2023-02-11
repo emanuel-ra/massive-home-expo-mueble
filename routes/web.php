@@ -48,5 +48,14 @@ Route::prefix('product')->group( function () {
 Route::prefix('quote')->group(function () {
     Route::match(['get', 'post'],'/list', [App\Http\Controllers\QuoteController::class, 'index'])->name('quote.list');
 
-    Route::get('/register', [App\Http\Controllers\ProspectController::class, 'register'])->name('quote.register');
+    
+});
+
+Route::prefix('cart')->group(function () {
+    Route::get('/price/{type}', [App\Http\Controllers\CartController::class, 'set_price'])->name('cart.price');
+
+    Route::get('/get', [App\Http\Controllers\CartController::class, 'get'])->name('cart.get');    
+
+    Route::get('/add/{product_id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+
 });

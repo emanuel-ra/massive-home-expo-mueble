@@ -17,15 +17,6 @@
                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <a href="{{ route('quote.register') }}" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Nueva Cotización
-                            </a>
-
-                        </div>
-                    </div>
-
                 </div>
                 <div class="card-body px-0">
 

@@ -325,6 +325,11 @@ return [
             'icon' => 'fas fa-boxes',
         ],
         [
+            'text' => 'Carrito',
+            'route'  => 'cart.get',            
+            'icon' => 'fas fa-shopping-cart',
+        ],
+        [
             'text' => 'Cotización',
             'route'  => 'quote.list',            
             'icon' => 'fas fa-store',
