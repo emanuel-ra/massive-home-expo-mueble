@@ -61,7 +61,7 @@ class UserSeeder extends Seeder
             'name' => 'Manuel Contreras',
             'email' => 'manuel@massivehome.com.mx',
             'email_verified_at' => now(),
-            'password' => Hash::make('noe23'), // password
+            'password' => Hash::make('manuel23'), // password
             'remember_token' => Str::random(10),
             'email_verified_at' => null,
         ]);
