@@ -51,6 +51,8 @@ Route::prefix('quote')->group(function () {
     Route::post('/store', [App\Http\Controllers\QuoteController::class, 'store'])->name('quote.store');
 
     Route::get('/pdf/{id}', [App\Http\Controllers\QuoteController::class, 'pdf'])->name('quote.pdf');
+
+    Route::get('/show/{id}', [App\Http\Controllers\QuoteController::class, 'created'])->name('quote.created');
 });
 
 Route::prefix('cart')->group(function () {

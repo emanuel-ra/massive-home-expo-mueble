@@ -57,6 +57,24 @@ class QuoteController extends Controller
         );
         
     }
+    public function created($id)
+    {     
+        $data = Quote::where('id',$id)->with('user')->with('prospect')->paginate(15)->withQueryString();
+
+        
+        $typePrices[1] = 'Menudeo';
+        $typePrices[2] = 'Mayoreo';
+        $typePrices[3] = 'Distribuidor';
+        $typePrices[4] = 'Caja';
+
+        return view('quote.list',
+            [
+                'data'=>$data,
+                'typePrices'=> $typePrices , 
+                'keyword'=>''
+            ]
+        );
+    }
     public function pdf($id)
     {
         $data = Quote::with('user')->with('prospect')->with('Detail')->find($id);
@@ -118,7 +136,8 @@ class QuoteController extends Controller
             }
             session(['type_price' => (int) 1]);
             \Cart::clear();
-            return redirect()->back()->withSuccess('Información guardada correctamente'); 
+            //return redirect()->back()->withSuccess('Información guardada correctamente'); 
+            return redirect()->route('quote.created',['id'=>$new->id]);
         }
         return redirect()->back()->withErrors(['Error' => 'ERROR AL GENERAR COTIZACIÓN']);     
     }

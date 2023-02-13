@@ -46,6 +46,7 @@
                                     <th>Tipo de Precio</th>
                                     <th>Total</th>         
                                     <th>Registrado por</th>
+                                    <th>Comentarios</th>
                                     <th>Fecha</th>
                                     <th></th>                                                                 
                                 </tr>
@@ -58,6 +59,7 @@
                                         <td>{{ $typePrices[$item->type_price] }}</td>
                                         <td>${{ $item->total }}</td>                                        
                                         <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->commentary }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>
                                             <div class="dropdown dropleft show">
