@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             //ProspectsSeeder::class
         ]);
 
-        \App\Models\Prospect::factory(30)->create();
+        //\App\Models\Prospect::factory(30)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
