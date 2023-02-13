@@ -121,15 +121,22 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-12 px-0 d-flex justify-content-between">                    
-                            <a href="{{ route('prospect.list') }}" class="btn btn-default">
-                                Cancelar
-                            </a>
-                            <button class="btn btn-primary">
-                                Continuar
-                            </button>
-                        </div>
+                        <form action="{{ route('quote.store') }}" method="post">
+                            @csrf
+                            <div class="col-12 mb-2 px-0">
+                                <label for="">Comentarios</label>
+                                <textarea name="commentary" id="commentary" class="form-control"></textarea>
+                            </div>
 
+                            <div class="col-sm-12 px-0 d-flex justify-content-between">                    
+                                <a href="{{ route('prospect.list') }}" class="btn btn-default">
+                                    Cancelar
+                                </a>
+                                <button class="btn btn-primary">
+                                    Guardar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     
                     
@@ -153,7 +160,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                             </div>
                         </div>

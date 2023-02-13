@@ -87,6 +87,10 @@
                                                         <a class="dropdown-item" target="_blank" href="{{ route('product.view',['id'=>$item->id]) }}">
                                                             Ficha Tecnica <i class="fas fa-file-contract"></i>
                                                         </a>
+
+                                                        <a class="dropdown-item" href="{{ route('cart.add',['product_id'=>$item->id]) }}">
+                                                            Agregar al Carrito <i class="fas fa-cart-plus text-info"></i>
+                                                        </a>
                                                     </li>
                                                 </div>
                                             </div>

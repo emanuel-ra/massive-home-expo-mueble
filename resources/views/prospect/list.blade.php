@@ -22,6 +22,11 @@
                             <a href="{{ route('prospect.register') }}" class="btn btn-primary">
                                 <i class="fa fa-plus"></i> Nuevo Registro
                             </a>
+
+
+                            <a href="{{ route('import.excel.prospect') }}" class="btn btn-success">
+                                <i class="fa fa-file-excel"></i> Importar a Excel
+                            </a>
                         </div>
                     </div>
 

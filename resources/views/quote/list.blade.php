@@ -19,7 +19,7 @@
 
                 </div>
                 <div class="card-body px-0">
-
+                    {{--                     
                     <div class="col-12 mb-2">
                         <form action="{{ route('product.list') }}">
                             <div class="input-group">
@@ -31,7 +31,7 @@
                                 </span>
                             </div>
                         </form>
-                    </div>
+                    </div> --}}
 
                     <div class="col-12">
                         {{ $data->links('pagination::bootstrap-4') }}
@@ -41,30 +41,24 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>CODIGO</th>
-                                    <th>DESCRIPCION</th>
-                                    <th>MENUDEO</th>
-                                    <th>MAYOREO</th>
-                                    <th>DISTRIBUIDOR</th>
-                                    <th>CAJA</th>     
-                                    <th>IMAGEN</th>  
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Tipo de Precio</th>
+                                    <th>Total</th>         
+                                    <th>Registrado por</th>
+                                    <th>Fecha</th>
                                     <th></th>                                                                 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $item)
                                     <tr>
-                                        <td>{{ $item->code }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>$ {{ number_format($item->price1,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price2,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price3,2,'.',',') }}</td>
-                                        <td>$ {{ number_format($item->price4,2,'.',',') }}</td>
-                                        <td>
-                                            <div style="width: 100px;">
-                                                <img src="{{ asset("images/products/$item->image") }}" class="img-thumbnail img-fluid" alt="{{ $item->image }}">
-                                            </div>
-                                        </td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->prospect->name }}</td>
+                                        <td>{{ $typePrices[$item->type_price] }}</td>
+                                        <td>${{ $item->total }}</td>                                        
+                                        <td>{{ $item->user->name }}</td>
+                                        <td>{{ $item->created_at }}</td>
                                         <td>
                                             <div class="dropdown dropleft show">
                                                 <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,8 +66,8 @@
                                                 </a>                                            
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                     <li>                                                
-                                                        <a class="dropdown-item" target="_blank" href="{{ route('product.view',['id'=>$item->id]) }}">
-                                                            Ficha Tecnica <i class="fas fa-file-contract"></i>
+                                                        <a class="dropdown-item" target="_blank" href="{{ route('quote.pdf',['id'=>$item->id]) }}">
+                                                            PDF <i class="fas fa-file-pdf"></i>
                                                         </a>
                                                     </li>
                                                 </div>

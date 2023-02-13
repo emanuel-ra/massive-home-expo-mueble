@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Prospect;
+use App\Exports\ProspectsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ProspectController extends Controller
 {
@@ -77,11 +80,14 @@ class ProspectController extends Controller
             return redirect()->back()->withSuccess('Información guardada correctamente'); 
         }
         return redirect()->back()->withErrors(['Error' => 'Problema al almacenar datos']);     
-
     }
     public function update(Request $request){
         
-    }    
+    }   
+    public function download() 
+    {
+        return Excel::download(new ProspectsExport,'prospects.xlsx');
+    }
     public function getStates(){
         return [
             'Aguascalientes' ,

@@ -23,7 +23,7 @@ class AjaxController extends Controller
             return '';
         }
         
-        $data = Prospect::where('name',$request->keyword)->get();
+        $data = Prospect::where('name','like','%'.$request->keyword.'%')->get();
 
        
         return Response()->json($data,200);

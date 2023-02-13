@@ -48,7 +48,9 @@ Route::prefix('product')->group( function () {
 Route::prefix('quote')->group(function () {
     Route::match(['get', 'post'],'/list', [App\Http\Controllers\QuoteController::class, 'index'])->name('quote.list');
 
-    
+    Route::post('/store', [App\Http\Controllers\QuoteController::class, 'store'])->name('quote.store');
+
+    Route::get('/pdf/{id}', [App\Http\Controllers\QuoteController::class, 'pdf'])->name('quote.pdf');
 });
 
 Route::prefix('cart')->group(function () {
@@ -57,7 +59,7 @@ Route::prefix('cart')->group(function () {
     Route::post('/prospect', [App\Http\Controllers\CartController::class, 'set_prospect'])->name('cart.prospect');
     Route::get('/prospect/remove', [App\Http\Controllers\CartController::class, 'remove_prospect'])->name('cart.prospect.remove');
 
-    Route::get('/get', [App\Http\Controllers\CartController::class, 'get'])->name('cart.get');    
+    Route::get('/get', [App\Http\Controllers\CartController::class, 'get'])->name('cart.get');
 
     Route::get('/add/{product_id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
     Route::get('/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
@@ -65,6 +67,12 @@ Route::prefix('cart')->group(function () {
     Route::get('/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 
 });
+
+Route::prefix('import')->group(function () {
+    Route::prefix('excel')->group(function () {
+        Route::get('/prospect', [App\Http\Controllers\ProspectController::class, 'download'])->name('import.excel.prospect');
+    } );
+} );
 
 Route::prefix('ajax')->group(function () {
     Route::post('/prospect', [App\Http\Controllers\AjaxController::class, 'get_prospects'])->name('ajax.prospect');
